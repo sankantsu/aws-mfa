@@ -1,0 +1,11 @@
+[lint]
+select = [
+    "E",    # pycodestyle errors
+    "F",    # Pyflakes — undefined names, unused imports (essential)
+    "I",    # isort — import ordering
+    "UP",   # pyupgrade — modern syntax
+    "B",    # flake8-bugbear — likely bugs and design issues
+]
+ignore = [
+    "E501",  # line too long — let the formatter handle it
+]
