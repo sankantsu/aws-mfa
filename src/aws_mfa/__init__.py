@@ -8,8 +8,8 @@ import sys
 def safe_capture_output(cmd: list[str]) -> str:
     proc = subprocess.run(cmd, capture_output=True)
     if proc.returncode != 0:
-        print(f"Command {cmd} returned {proc.returncode}")
-        print("Error:", proc.stderr.decode())
+        print(f"Command {cmd} returned {proc.returncode}", file=sys.stderr)
+        print("Error:", proc.stderr.decode(), file=sys.stderr)
         sys.exit(1)
     return proc.stdout.decode().strip()
 
@@ -46,7 +46,10 @@ def make_aws_env_str(access_key_id, secret_access_key, session_token):
 
 def main():
     profile = "default"
-    token_code = input("Token code: ")
+
+    prompt = "Token code: "
+    print(prompt, file=sys.stderr, end="")
+    token_code = input()
 
     # Get session token
     data = get_session_token_json(profile, token_code)
