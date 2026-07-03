@@ -47,8 +47,9 @@ def make_aws_env_str(access_key_id, secret_access_key, session_token):
 def main():
     profile = "default"
 
-    prompt = "Token code: "
-    print(prompt, file=sys.stderr, end="")
+    if sys.stdin.isatty():
+        prompt = "Token code: "
+        print(prompt, file=sys.stderr, end="")
     token_code = input()
 
     # Get session token
